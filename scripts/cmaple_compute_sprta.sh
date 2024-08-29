@@ -19,6 +19,7 @@ CMAPLE_SPRTA_TREE_PREFIX=$6 # The prefix of trees with SPRTA computed by CMAPLE
 for aln_path in "${ALN_DIR}"/*.maple; do
 	aln=$(basename "$aln_path")
     echo "Compute SPRTA for the tree ${ML_TREE_PREFIX}${aln}.treefile inferred from ${aln}"
+    echo "cd ${ALN_DIR} && ${CMAPLE_PATH} -aln ${aln} -t ${TREE_DIR}/${ML_TREE_PREFIX}${aln}.treefile -pre ${CMAPLE_SPRTA_TREE_PREFIX}${aln} ${CMAPLE_PARAMS}"
     cd ${ALN_DIR} && ${CMAPLE_PATH} -aln ${aln} -t ${TREE_DIR}/${ML_TREE_PREFIX}${aln}.treefile -pre ${CMAPLE_SPRTA_TREE_PREFIX}${aln} ${CMAPLE_PARAMS}
 done
                         

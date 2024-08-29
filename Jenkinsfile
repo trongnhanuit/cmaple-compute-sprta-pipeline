@@ -73,7 +73,6 @@ pipeline {
 
                                               
                         echo "Compute SPRTA by CMAPLE"
-                        echo "${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${params.CMAPLE_SPRTA_PARAMS} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX}"                        
                         sh ${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${params.CMAPLE_SPRTA_PARAMS} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX}
                         
                        
