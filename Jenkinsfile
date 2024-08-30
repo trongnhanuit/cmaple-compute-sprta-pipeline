@@ -10,7 +10,6 @@ properties([
         string(name: 'CMAPLE_BRANCH', defaultValue: 'main', description: 'Branch to build CMAPLE'),
         booleanParam(defaultValue: false, description: 'Download testing data?', name: 'DOWNLOAD_DATA'),
         booleanParam(defaultValue: false, description: 'Infer ML trees?', name: 'INFER_TREE'),
-        string(name: 'CMAPLE_SPRTA_PARAMS', defaultValue: '-overwrite -blfix -search FAST', description: 'CMAPLE parameters for computing SPRTA'),
     ])
 ])
 pipeline {
@@ -73,7 +72,7 @@ pipeline {
 
                                               
                         echo "Compute SPRTA by CMAPLE"
-                        sh ${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${params.CMAPLE_SPRTA_PARAMS} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX}
+                        sh ${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX}
                         
                        
                         exit
