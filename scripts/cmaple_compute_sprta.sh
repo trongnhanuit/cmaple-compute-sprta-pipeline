@@ -7,7 +7,7 @@ TREE_DIR=$2 # tree dir
 CMAPLE_PATH=$3 # path to CMAPLE executable
 ML_TREE_PREFIX=$4 # The prefix of ML trees
 CMAPLE_SPRTA_TREE_PREFIX=$5 # The prefix of trees with SPRTA computed by CMAPLE
-CMAPLE_PARAMS="-overwrite -blfix -search FAST" # CMAPLE params
+CMAPLE_PARAMS="-sprta -overwrite -blfix -search FAST" # CMAPLE params
 
 
 ### pre steps #####
