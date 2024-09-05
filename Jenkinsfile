@@ -11,6 +11,7 @@ properties([
         booleanParam(defaultValue: false, description: 'Download testing data?', name: 'DOWNLOAD_DATA'),
         booleanParam(defaultValue: false, description: 'Infer ML trees?', name: 'INFER_TREE'),
         string(name: 'MODEL', defaultValue: 'GTR', description: 'Substitution model'),
+        booleanParam(defaultValue: false, description: 'Blengths fixed?', name: 'BLENGTHS_FIXED'),
     ])
 ])
 pipeline {
@@ -74,7 +75,7 @@ pipeline {
 
                                               
                         echo "Compute SPRTA by CMAPLE"
-                        sh ${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX} ${params.MODEL}
+                        sh ${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX} ${params.MODEL} ${params.BLENGTHS_FIXED}
                         
                        
                         exit
