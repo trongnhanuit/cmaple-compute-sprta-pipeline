@@ -71,7 +71,7 @@ pipeline {
                         """
                 	sh "scp -r scripts/* ${NCI_ALIAS}:${SCRIPTS_DIR}"
                     sh """
-                        ssh ${NCI_ALIAS} << EOF
+                        ssh -tt ${NCI_ALIAS} << EOF
 
                                               
                         echo "Compute SPRTA by CMAPLE"
