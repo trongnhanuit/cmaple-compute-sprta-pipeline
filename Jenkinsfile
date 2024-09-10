@@ -64,7 +64,8 @@ pipeline {
             steps {
                 script {
                 	sh """
-                        ssh ${NCI_ALIAS} << EOF
+                        ssh -tt ${NCI_ALIAS} << EOF
+                        
                         mkdir -p ${SCRIPTS_DIR}
                         exit
                         EOF
