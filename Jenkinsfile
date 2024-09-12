@@ -12,6 +12,7 @@ properties([
         booleanParam(defaultValue: false, description: 'Infer ML trees?', name: 'INFER_TREE'),
         string(name: 'MODEL', defaultValue: 'GTR', description: 'Substitution model'),
         booleanParam(defaultValue: false, description: 'Blengths fixed?', name: 'BLENGTHS_FIXED'),
+        booleanParam(defaultValue: false, description: 'Use CECC cluster?', name: 'USE_CECC_CLUSTER'),
     ])
 ])
 pipeline {
@@ -29,13 +30,31 @@ pipeline {
         CMAPLE_SPRTA_TREE_PREFIX = "SPRTA_CMAPLE_tree_"
     }
     stages {
+    	stage('Init variables') {
+            steps {
+                script {
+                    if (params.USE_CECC_CLUSTER) {
+                    	NCI_ALIAS = "cecc_cluster"
+                    	WORKING_DIR = "/home/remote/u7091034/cmaple"
+        				
+        				DATA_DIR = "${WORKING_DIR}/data"
+        				ALN_DIR = "${DATA_DIR}/aln"
+        				TREE_DIR = "${DATA_DIR}/tree"
+        				SCRIPTS_DIR = "${WORKING_DIR}/scripts"
+        				BUILD_DIR = "${WORKING_DIR}/builds/build-default"
+        				CMAPLE_PATH = "${BUILD_DIR}/cmaple"
+                    }
+                }
+            }
+        }
     	stage("Build CMAPLE") {
             steps {
                 script {
                 	if (params.BUILD_CMAPLE) {
                         echo 'Building CMAPLE'
                         // trigger jenkins cmaple-build
-                        build job: 'cmaple-build', parameters: [string(name: 'BRANCH', value: CMAPLE_BRANCH)]
+                        build job: 'cmaple-build', parameters: [string(name: 'BRANCH', value: CMAPLE_BRANCH),
+                        booleanParam(name: 'USE_CECC_CLUSTER', value: USE_CECC_CLUSTER),]
 
                     }
                     else {
@@ -52,6 +71,7 @@ pipeline {
                         build job: 'cmaple-tree-inference', parameters: [booleanParam(name: 'DOWNLOAD_DATA', value: DOWNLOAD_DATA),
                         booleanParam(name: 'INFER_TREE', value: INFER_TREE),
                         string(name: 'MODEL', value: MODEL),
+                        booleanParam(name: 'USE_CECC_CLUSTER', value: USE_CECC_CLUSTER),
                         ]
                     }
                     else {
