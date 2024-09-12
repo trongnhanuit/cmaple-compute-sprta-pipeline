@@ -12,7 +12,6 @@ properties([
         booleanParam(defaultValue: false, description: 'Infer ML trees?', name: 'INFER_TREE'),
         string(name: 'MODEL', defaultValue: 'GTR', description: 'Substitution model'),
         booleanParam(defaultValue: false, description: 'Blengths fixed?', name: 'BLENGTHS_FIXED'),
-        booleanParam(defaultValue: false, description: 'Use CECC cluster?', name: 'USE_CECC_CLUSTER'),
         booleanParam(defaultValue: false, description: 'Use CIBIV cluster?', name: 'USE_CIBIV'),
     ])
 ])
