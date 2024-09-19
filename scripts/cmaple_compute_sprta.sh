@@ -39,6 +39,6 @@ done
 echo "Moving the trees to ${TREE_DIR}"
 mkdir -p ${TREE_DIR}
 # remove old results
-rm -f ${TREE_DIR}/${CMAPLE_SPRTA_TREE_PREFIX}*treefile
-# copy new reaults
-mv ${ALN_DIR}/${CMAPLE_SPRTA_TREE_PREFIX}*treefile ${TREE_DIR}
+rm -f ${TREE_DIR}/${CMAPLE_SPRTA_TREE_PREFIX}*treefile*
+# copy new results
+mv ${ALN_DIR}/${CMAPLE_SPRTA_TREE_PREFIX}*treefile.nexus ${TREE_DIR}
