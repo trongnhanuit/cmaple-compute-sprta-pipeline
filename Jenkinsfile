@@ -12,6 +12,7 @@ properties([
         booleanParam(defaultValue: false, description: 'Infer ML trees?', name: 'INFER_TREE'),
         string(name: 'MODEL', defaultValue: 'GTR', description: 'Substitution model'),
         booleanParam(defaultValue: false, description: 'Blengths fixed?', name: 'BLENGTHS_FIXED'),
+        booleanParam(defaultValue: false, description: 'Do not reroot?', name: 'NOT_REROOT'),
         booleanParam(defaultValue: true, description: 'Compute supports for branches with a length of zero?', name: 'ZERO_LENGTH_BRANCHES'),
         booleanParam(defaultValue: false, description: 'Use CIBIV cluster?', name: 'USE_CIBIV'),
     ])
@@ -99,7 +100,7 @@ pipeline {
 
                                               
                         echo "Compute SPRTA by CMAPLE"
-                        sh ${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX} ${params.MODEL} ${params.BLENGTHS_FIXED} ${params.ZERO_LENGTH_BRANCHES}
+                        sh ${SCRIPTS_DIR}/cmaple_compute_sprta.sh ${ALN_DIR} ${TREE_DIR} ${CMAPLE_PATH} ${ML_TREE_PREFIX} ${CMAPLE_SPRTA_TREE_PREFIX} ${params.MODEL} ${params.BLENGTHS_FIXED} ${params.NOT_REROOT} ${params.ZERO_LENGTH_BRANCHES}
                         
                        
                         exit
