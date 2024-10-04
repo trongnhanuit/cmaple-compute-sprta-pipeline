@@ -31,7 +31,7 @@ fi
 
 OUT_ALT_SPR_OPT=""
 if [ "${OUT_ALT_SPR}" = true ]; then
-  OUT_ALT_SPR_OPT=" --out-alternative-spr"
+  OUT_ALT_SPR_OPT=" -out-alternative-spr"
 fi
 
 ### pre steps #####
